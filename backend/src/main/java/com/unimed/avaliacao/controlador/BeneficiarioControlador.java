@@ -1,27 +1,25 @@
 package com.unimed.avaliacao.controlador;
 
-import com.unimed.avaliacao.entidade.Plano;
+import com.unimed.avaliacao.entidade.Beneficiario;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
-import com.unimed.avaliacao.servico.PlanoServico;
+import com.unimed.avaliacao.servico.BeneficiarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(value = "/plano", produces = { MediaType.APPLICATION_JSON_VALUE })
-public class PlanoControlador {
+@RequestMapping(value = "/beneficiario", produces = { MediaType.APPLICATION_JSON_VALUE })
+public class BeneficiarioControlador {
 
 
     @Autowired
-    PlanoServico planoServico;
+    BeneficiarioServico beneficiarioServico;
     @GetMapping
-    public ResponseEntity listarTodosPlano() {
+    public ResponseEntity listarTodosBeneficiario() {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(planoServico.listarPlanos());
+            return ResponseEntity.status(HttpStatus.OK).body(beneficiarioServico.listarBeneficiario());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -29,9 +27,9 @@ public class PlanoControlador {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity buscarPlanoPorId(@PathVariable int id) {
+    public ResponseEntity buscarBeneficiarioPorId(@PathVariable int id) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(planoServico.buscarPlanoPorId(id));
+            return ResponseEntity.status(HttpStatus.OK).body(beneficiarioServico.buscarBeneficiarioPorId(id));
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
@@ -41,9 +39,9 @@ public class PlanoControlador {
     }
 
     @PostMapping
-    public ResponseEntity salvarPlano(@RequestBody Plano plano) {
+    public ResponseEntity salvarBeneficiario(@RequestBody Beneficiario beneficiario) {
         try {
-            planoServico.criarPlano(plano);
+            beneficiarioServico.criarBeneficiario(beneficiario);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -52,9 +50,9 @@ public class PlanoControlador {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity atualizarPlano(@PathVariable int id, @RequestBody Plano plano) {
+    public ResponseEntity atualizarBeneficiario(@PathVariable int id, @RequestBody Beneficiario beneficiario) {
         try {
-            planoServico.atualizarPlano(id, plano);
+            beneficiarioServico.atualizarBeneficiario(id, beneficiario);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -65,9 +63,9 @@ public class PlanoControlador {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletarPlano(@PathVariable int id) {
+    public ResponseEntity deletarBeneficiario(@PathVariable int id) {
         try {
-            planoServico.deletarPlano(id);
+            beneficiarioServico.deletarBeneficiario(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

@@ -1,37 +1,39 @@
 package com.unimed.avaliacao.controlador;
 
 import com.unimed.avaliacao.entidade.Plano;
+import com.unimed.avaliacao.entidade.Usuario;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
-import com.unimed.avaliacao.servico.PlanoServico;
+import com.unimed.avaliacao.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.management.BadAttributeValueExpException;
 
 @RestController
-@RequestMapping(value = "/plano", produces = { MediaType.APPLICATION_JSON_VALUE })
-public class PlanoControlador {
+@RequestMapping(value = "/usuario", produces = { MediaType.APPLICATION_JSON_VALUE })
+public class UsuarioControlador {
 
 
     @Autowired
-    PlanoServico planoServico;
+    UsuarioServico usuarioServico;
+
     @GetMapping
-    public ResponseEntity listarTodosPlano() {
+    public ResponseEntity listarUsuarios() {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(planoServico.listarPlanos());
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioServico.listarUsuarios());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity buscarPlanoPorId(@PathVariable int id) {
+    @GetMapping("/{login}")
+    public ResponseEntity buscarUsuarioPorLogin(@PathVariable String login) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(planoServico.buscarPlanoPorId(id));
+            return ResponseEntity.status(HttpStatus.OK).body(usuarioServico.buscarUsuarioPorLogin(login));
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
@@ -41,20 +43,23 @@ public class PlanoControlador {
     }
 
     @PostMapping
-    public ResponseEntity salvarPlano(@RequestBody Plano plano) {
+    public ResponseEntity criarUsuario(@RequestBody Usuario usuario) {
         try {
-            planoServico.criarPlano(plano);
+            usuarioServico.criarUsuario(usuario);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        } catch (BadAttributeValueExpException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity atualizarPlano(@PathVariable int id, @RequestBody Plano plano) {
+    @PutMapping("/{login}")
+    public ResponseEntity atualizarUsuario(@PathVariable String login, @RequestBody Usuario usuario) {
         try {
-            planoServico.atualizarPlano(id, plano);
+            usuarioServico.atualizarUsuario(login, usuario);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -64,10 +69,10 @@ public class PlanoControlador {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deletarPlano(@PathVariable int id) {
+    @DeleteMapping("/{login}")
+    public ResponseEntity deletarUsuario(@PathVariable String login) {
         try {
-            planoServico.deletarPlano(id);
+            usuarioServico.deletarUsuario(login);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -75,5 +80,10 @@ public class PlanoControlador {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("autenticado")
+    public ResponseEntity verificaAutenticado() {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 }

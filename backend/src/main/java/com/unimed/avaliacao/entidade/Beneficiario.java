@@ -9,7 +9,7 @@ public class Beneficiario {
 
     private String email;
 
-    private int Idade;
+    private int idade;
 
     private Plano plano;
 
@@ -22,7 +22,7 @@ public class Beneficiario {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        Idade = idade;
+        idade = idade;
         this.plano = plano;
     }
 
@@ -59,11 +59,11 @@ public class Beneficiario {
     }
 
     public int getIdade() {
-        return Idade;
+        return idade;
     }
 
     public void setIdade(int idade) {
-        Idade = idade;
+        this.idade = idade;
     }
 
     public Plano getPlano() {
