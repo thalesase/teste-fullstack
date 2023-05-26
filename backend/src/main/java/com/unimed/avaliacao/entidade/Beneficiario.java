@@ -22,7 +22,7 @@ public class Beneficiario {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        idade = idade;
+        this.idade = idade;
         this.plano = plano;
     }
 

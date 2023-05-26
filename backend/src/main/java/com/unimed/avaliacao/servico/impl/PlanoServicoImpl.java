@@ -7,6 +7,7 @@ import com.unimed.avaliacao.servico.PlanoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.BadAttributeValueExpException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,17 +27,21 @@ public class PlanoServicoImpl implements PlanoServico {
         return plano;
     }
     @Override
-    public void criarPlano(Plano plano) {
+    public void criarPlano(Plano plano) throws BadAttributeValueExpException {
+        if(plano.getValor()<0) throw new BadAttributeValueExpException("Valor não pode ser menor que 0");
+
         if(planoRepositorio.criarPlano(plano) == 0) throw new RuntimeException("Erro ao Inserir Registro");
     }
     @Override
-    public void atualizarPlano(int id, Plano plano) throws RegistroNaoEncontradoException {
+    public void atualizarPlano(int id, Plano plano) throws RegistroNaoEncontradoException, BadAttributeValueExpException {
+        if(plano.getValor()<0) throw new BadAttributeValueExpException("Valor não pode ser menor que 0");
         plano.setId(id);
         if(planoRepositorio.atualizarPlano(plano) == 0) throw new RegistroNaoEncontradoException();
     }
 
     @Override
     public void deletarPlano(int id) throws RegistroNaoEncontradoException {
+
         if(planoRepositorio.deletarPlano(id) == 0) throw new RegistroNaoEncontradoException();
     }
 

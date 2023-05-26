@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.BadAttributeValueExpException;
 import java.util.List;
 
 @RestController
@@ -46,6 +47,9 @@ public class PlanoControlador {
         try {
             planoServico.criarPlano(plano);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        } catch (BadAttributeValueExpException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -57,6 +61,9 @@ public class PlanoControlador {
         try {
             planoServico.atualizarPlano(id, plano);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        } catch (BadAttributeValueExpException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
