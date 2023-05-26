@@ -1,6 +1,5 @@
 package com.unimed.avaliacao.repositorio;
 
-import com.unimed.avaliacao.entidade.Plano;
 import com.unimed.avaliacao.entidade.Usuario;
 import org.apache.ibatis.annotations.*;
 

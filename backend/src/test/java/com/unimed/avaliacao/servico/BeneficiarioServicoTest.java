@@ -1,12 +1,9 @@
 package com.unimed.avaliacao.servico;
 
 import com.unimed.avaliacao.entidade.Beneficiario;
-import com.unimed.avaliacao.entidade.Plano;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
 import com.unimed.avaliacao.repositorio.BeneficarioRepositorio;
-import com.unimed.avaliacao.repositorio.PlanoRepositorio;
 import com.unimed.avaliacao.servico.impl.BeneficiarioServicoImpl;
-import com.unimed.avaliacao.servico.impl.PlanoServicoImpl;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;

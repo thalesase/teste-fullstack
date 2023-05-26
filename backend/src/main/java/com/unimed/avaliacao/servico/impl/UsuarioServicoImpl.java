@@ -1,9 +1,7 @@
 package com.unimed.avaliacao.servico.impl;
 
-import com.unimed.avaliacao.entidade.Beneficiario;
 import com.unimed.avaliacao.entidade.Usuario;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
-import com.unimed.avaliacao.repositorio.BeneficarioRepositorio;
 import com.unimed.avaliacao.repositorio.UsuarioRepositorio;
 import com.unimed.avaliacao.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;

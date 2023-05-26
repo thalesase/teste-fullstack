@@ -1,11 +1,8 @@
 package com.unimed.avaliacao.servico;
 
-import com.unimed.avaliacao.entidade.Plano;
 import com.unimed.avaliacao.entidade.Usuario;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
-import com.unimed.avaliacao.repositorio.PlanoRepositorio;
 import com.unimed.avaliacao.repositorio.UsuarioRepositorio;
-import com.unimed.avaliacao.servico.impl.PlanoServicoImpl;
 import com.unimed.avaliacao.servico.impl.UsuarioServicoImpl;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;

@@ -1,6 +1,5 @@
 package com.unimed.avaliacao.servico;
 
-import com.unimed.avaliacao.entidade.Plano;
 import com.unimed.avaliacao.entidade.Usuario;
 import com.unimed.avaliacao.excecao.RegistroNaoEncontradoException;
 
