@@ -1,0 +1,66 @@
+
+<div class="container form-group" style="margin-top: 20px;">
+    <form [formGroup]="beneficiarioForm" autocomplete="off">
+        <div class="mb-1 field">
+            <label for="nome">Nome</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': beneficiarioForm.get('nome')?.invalid &&
+                (beneficiarioForm.get('nome')?.dirty || beneficiarioForm.get('nome')?.touched)}" id="nome" name="nome"
+                    formControlName="nome" placeholder="Nome">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="email">Email</label>
+            <div class="input-group has-validation">
+                <input type="email" #name [ngClass]="{'form-control': true, 'is-invalid': beneficiarioForm.get('email')?.invalid &&
+                (beneficiarioForm.get('email')?.dirty || beneficiarioForm.get('email')?.touched)}" id="email" name="email"
+                    formControlName="email" placeholder="Email">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="cpf">CPF</label>
+            <div class="input-group has-validation">
+                <input type="cpf" #name [ngClass]="{'form-control': true, 'is-invalid': beneficiarioForm.get('cpf')?.invalid &&
+                (beneficiarioForm.get('cpf')?.dirty || beneficiarioForm.get('cpf')?.touched)}" id="cpf" name="cpf"
+                    formControlName="cpf" placeholder="CPF">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="idade" class="form-label">Idade</label>
+            <div class="input-group has-validation">
+                <input type="number" maxlength="10" [ngClass]="{'form-control': true, 'is-invalid': beneficiarioForm.get('idade')?.invalid &&
+                (beneficiarioForm.get('idade')?.dirty || beneficiarioForm.get('idade')?.touched)}" id="idade" name="idade"
+                    formControlName="idade" placeholder="Idade">
+                <div class="invalid-feedback">
+                    Campo Obrigatório e não pode conter valores negativos.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1 field">
+            <label for="plano" class="form-label">Plano</label>
+            <div class="input-group has-validation">
+                <select class="form-select" [(ngModel)]="plano" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let obj of planosLista" [ngValue]="obj">{{obj.nome}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="save()" [disabled]="beneficiarioForm.invalid" class="btn btn-primary" type="button">
+                    {{id==0 || id==null ?'Salvar':'Atualizar'}}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

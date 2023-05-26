@@ -1,0 +1,46 @@
+
+<div class="container form-group" style="margin-top: 20px;">
+    <form [formGroup]="usuarioForm" autocomplete="off">
+        <div class="mb-1 field" *ngIf="id=='' && id==undefined">
+            <label for="nome">Login</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': usuarioForm.get('login')?.invalid &&
+                (usuarioForm.get('login')?.dirty || usuarioForm.get('login')?.touched)}" id="login" name="login"
+                    formControlName="login" placeholder="Login">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="nome">Nome</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': usuarioForm.get('nome')?.invalid &&
+                (usuarioForm.get('nome')?.dirty || usuarioForm.get('nome')?.touched)}" id="nome" name="nome"
+                    formControlName="nome" placeholder="Nome">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="nome">Senha</label>
+            <div class="input-group has-validation">
+                <input type="password" #name [ngClass]="{'form-control': true, 'is-invalid': usuarioForm.get('senha')?.invalid &&
+                (usuarioForm.get('senha')?.dirty || usuarioForm.get('senha')?.touched)}" id="senha" name="senha"
+                    formControlName="senha" placeholder="Senha">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="save()" [disabled]="usuarioForm.invalid" class="btn btn-primary" type="button">
+                    {{id=='0' || id==null ?'Salvar':'Atualizar'}}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

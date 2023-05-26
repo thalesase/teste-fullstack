@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/beneficiario", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class BeneficiarioControlador {
 

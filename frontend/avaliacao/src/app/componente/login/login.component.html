@@ -1,0 +1,42 @@
+
+<div class="container form-group" style="margin-top: 20px;">
+    <form [formGroup]="loginForm" autocomplete="off">
+        <div class="mb-1 field">
+            <label for="login">Login</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': loginForm.get('login')?.invalid &&
+                (loginForm.get('login')?.dirty || loginForm.get('login')?.touched)}" id="login" name="login"
+                    formControlName="login" placeholder="Login">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="senha" class="form-label">Senha</label>
+            <div class="input-group has-validation">
+                <input type="password" [ngClass]="{'form-control': true, 'is-invalid': loginForm.get('senha')?.invalid &&
+                (loginForm.get('senha')?.dirty || loginForm.get('senha')?.touched)}" id="senha" name="senha"
+                    formControlName="senha" placeholder="Senha">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1">
+            <div class="alert alert-light" *ngIf="error!=''" style="color: red">
+                {{error}}
+            </div>
+           
+        </div>
+        <div class="mb-1">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="login()" [disabled]="loginForm.invalid" class="btn btn-primary" type="button">
+                    {{'Login'}}</button>
+
+            </div>
+        </div>
+
+
+    </form>
+</div>

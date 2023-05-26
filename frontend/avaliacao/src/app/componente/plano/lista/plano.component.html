@@ -1,0 +1,29 @@
+
+<div class="container" style="margin-top: 20px;" >
+    <p-table [value]="planosLista" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="{first} a {last} de {totalRecords} registros"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>valor</th>
+                <th>Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-plano>
+            <tr [ngClass]="{'inActive': plano.isActive == false}">
+                <td>{{plano.nome}}</td>
+                <td>{{plano.valor | currency:'BRL':true}}</td>
+                <td>
+                    <a pButton pRipple type="button" [routerLink]="['/atualizaPlano',plano.id]" icon="pi pi-user-edit"
+                        class="p-button-rounded"></a>
+                    <a pButton pRipple type="button" (click)="remove(plano.id)" style="margin-left: 5px;"
+                        icon="pi pi-trash" class="p-button-rounded"></a>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <a [routerLink]="['/adicionaPlano']" class="btn btn-primary">Novo Plano</a>
+        </ng-template>
+    </p-table>
+</div>

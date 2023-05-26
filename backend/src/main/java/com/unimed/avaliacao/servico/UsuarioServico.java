@@ -12,5 +12,5 @@ public interface UsuarioServico {
     Usuario buscarUsuarioPorLogin(String login) throws RegistroNaoEncontradoException;
     void criarUsuario(Usuario usuario) throws BadAttributeValueExpException;
     void atualizarUsuario(String login, Usuario usuario) throws RegistroNaoEncontradoException;
-    void deletarUsuario(String login) throws RegistroNaoEncontradoException;
+    void deletarUsuario(String login) throws RegistroNaoEncontradoException, BadAttributeValueExpException;
 }

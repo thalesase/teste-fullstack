@@ -1,0 +1,35 @@
+
+<div class="container form-group" style="margin-top: 20px;">
+    <form [formGroup]="planoform" autocomplete="off">
+        <div class="mb-1 field">
+            <label for="nome">Nome</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': planoform.get('nome')?.invalid &&
+                (planoform.get('nome')?.dirty || planoform.get('nome')?.touched)}" id="nome" name="nome"
+                    formControlName="nome" placeholder="Nome">
+                <div class="invalid-feedback">
+                    Campo Obrigatório.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1 field">
+            <label for="valor" class="form-label">Valor</label>
+            <div class="input-group has-validation">
+                <input type="number" maxlength="10" [ngClass]="{'form-control': true, 'is-invalid': planoform.get('valor')?.invalid &&
+                (planoform.get('valor')?.dirty || planoform.get('valor')?.touched)}" id="valor" name="valor"
+                    formControlName="valor" placeholder="Valor">
+                <div class="invalid-feedback">
+                    Campo Obrigatório e não pode conter valores negativos.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="save()" [disabled]="planoform.invalid" class="btn btn-primary" type="button">
+                    {{id==0 || id==null ?'Salvar':'Atualizar'}}</button>
+            </div>
+        </div>
+
+    </form>
+</div>

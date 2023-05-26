@@ -40,7 +40,8 @@ public class UsuarioServicoImpl implements UsuarioServico {
     }
 
     @Override
-    public void deletarUsuario(String login) throws RegistroNaoEncontradoException {
+    public void deletarUsuario(String login) throws RegistroNaoEncontradoException, BadAttributeValueExpException {
+        if(login.equals("admin")) throw new BadAttributeValueExpException("Não é possivel excluir o admin");
         if(usuarioRepositorio.deletarUsuario(login) == 0) throw new RegistroNaoEncontradoException();
     }
 

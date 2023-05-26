@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.management.BadAttributeValueExpException;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/usuario", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class UsuarioControlador {
 
@@ -76,6 +77,9 @@ public class UsuarioControlador {
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (RegistroNaoEncontradoException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (BadAttributeValueExpException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
